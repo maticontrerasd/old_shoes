@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card w-50">
+            <div class="card-body">
+                <h3 class="card-title text-center">Registro</h3>
+                <br>
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    {{form | crispy }}
+                    <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+
+                    <br>
+                    <br>
+                    
+                    <a href="{% url 'login' %}" class="card-link">Login</a>
+                    <p><a href="{% url 'emailForm' %}">¿Olvidaste tu contraseña?</a></p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

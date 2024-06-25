@@ -1,0 +1,71 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <a href="{% url 'agregar_producto' %}" class="btn btn-primary mb-3">Agregar nuevo producto</a>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Disponible</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Tallas</th>
+                    <th scope="col">Agregar Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>
+                        {% if producto.image %}
+                        <img src="{{ producto.image.url }}" alt="{{ producto.name }}" class="img-thumbnail" style="width: 100px; height: auto;">
+                        {% else %}
+                        No Image
+                        {% endif %}
+                    </td>
+                    <td>{{ producto.name }}</td>
+                    <td>{{ producto.brand }}</td>
+                    <td>{{ producto.category }}</td>
+                    <td>{{ producto.price }}</td>
+                    <td>{{ producto.avalible|yesno:"Sí,No" }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-warning" href="{% url 'actualizar_producto' producto.id %}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{% url 'eliminar_producto' producto.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                    <td>
+                        {% for stock in producto.productstock_set.all %}
+                        <p>Stock: {{ stock.stock }}</p>
+                        {% empty %}
+                        <p>No hay stock disponible</p>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for stock in producto.productstock_set.all %}
+                        <p>Talla: {{ stock.size }}</p>
+                        {% empty %}
+                        <p>No hay stock disponible</p>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{% url 'agregar_stock' producto.id %}" class="btn btn-sm btn-warning">Agregar Stock</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center text-center"> 
+        <div class="col-12 col-md-8 mx-auto"> 
+            <div class="card bg-white"> 
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4">Bienvenido a Old Shoes</h2>
+                </div>
+                <div class="card-body">
+                    {% if request.user.is_authenticated %}
+                        <h4 class="card-title">¡Hola, {{ user.username | upper }}!</h4>
+                        <p class="card-text">Nos alegra verte de nuevo. Explora nuestros nuevos productos y ofertas especiales.</p>
+                        <a href="{% url 'productos' %}" class="btn btn-success">Ver Productos</a>
+                    {% else %}
+                        <h4 class="card-title">¡Bienvenido a nuestra tienda!</h4>
+                        <p class="card-text">Inicia sesión o regístrate para disfrutar de una experiencia personalizada.</p>
+                        <a href="{% url 'login' %}" class="btn btn-primary">Ingresar</a>
+                        <a href="{% url 'register' %}" class="btn btn-secondary">Registrarse</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

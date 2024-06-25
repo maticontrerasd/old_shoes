@@ -1,0 +1,96 @@
+
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card">
+            <h5 class="card-header">Agregar Nuevo Producto</h5>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.name.label_tag }}
+                        <br>
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.name.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.brand.label_tag }}
+                        <br>
+                        {{ form.brand }}
+                        {% if form.brand.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.brand.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.category.label_tag }}
+                        <br>
+                        {{ form.category }}
+                        {% if form.category.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.category.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.image.label_tag }}
+                        <br>
+                        {{ form.image }}
+                        {% if form.image.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.image.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.excerpt.label_tag }}
+                        <br>
+                        {{ form.excerpt }}
+                        {% if form.excerpt.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.excerpt.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.detail.label_tag }}
+                        <br>
+                        {{ form.detail }}
+                        {% if form.detail.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.detail.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.price.label_tag }}
+                        <br>
+                        {{ form.price }}
+                        {% if form.price.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.price.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="avalible" name="avalible" {% if form.avalible.value %}checked{% endif %}>
+                        <label class="form-check-label" for="avalible">Disponible</label>
+                        {% if form.avalible.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.avalible.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar Producto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
+        </div>
+        <div class="col-md-6">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.brand }}</p>
+            <p>{{ product.detail }}</p>
+            <p><strong>Precio: </strong>$ {{ product.price }}</p>
+            
+            {% if stock_por_talla %}
+                {% if stock_disponible %}
+                    <form method="post" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="size">Talla:</label>
+                            <select class="form-control" id="size" name="size">
+                                {% for stock_talla in stock_por_talla %}
+                                    {% if stock_talla.stock > 0 %}
+                                        <option value="{{ stock_talla.size }}">{{ stock_talla.size }} - Stock: {{ stock_talla.stock }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                    </form>
+                {% else %}
+                    <p>No hay stock disponible para este producto.</p>
+                {% endif %}
+            {% else %}
+                <p>No hay información de stock disponible para este producto.</p>
+            {% endif %}
+            <br>
+            <a href="{% url 'productos' %}" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

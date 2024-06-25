@@ -1,0 +1,44 @@
+{% extends "core/base.html" %}
+
+{% block title %}Cambiar Contraseña{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4" style="width: 400px;">
+        <div class="card-body">
+            <h5 class="card-title">Cambiar Contraseña</h5>
+            <br>
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    
+                    <label for="{{ form.new_password1.id_for_label }}"><p>{{ form.new_password1.label }}</p></label>
+                    <br>
+                    {{ form.new_password1 }}
+
+                    {{ form.new_password1.errors }}
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="{{ form.new_password1.id_for_label }}"><p>{{ form.new_password2.label }}</p></label>
+                    {{ form.new_password2 }}
+                    {{ form.new_password2.errors }}
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Guardar Contraseña</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

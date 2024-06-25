@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">¡Compra Exitosa!</h4>
+        <p>Gracias por tu compra. Tu pago ha sido procesado con éxito.</p>
+        <hr>
+    </div>
+    <div class="mt-4">
+        <a href="{% url 'home' %}" class="btn btn-primary">Volver al Inicio</a>
+        <a href="{% url 'productos' %}" class="btn btn-secondary">Seguir Comprando</a>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

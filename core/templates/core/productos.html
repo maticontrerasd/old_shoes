@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Filtrar por talla</h5>
+                    <form action="{% url 'ordenar_por_tallas' %}" method="GET">
+                        <div class="mb-3">
+                            <label for="talla" class="form-label">Seleccione una talla:</label>
+                            <select name="talla" class="form-select">
+                                <option value="" selected>Todas las tallas</option>
+                                {% for talla in tallas_disponibles %}
+                                    <option value="{{ talla }}">{{ talla }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Filtrar por marca</h5>
+                    <form action="{% url 'ordenar_por_marca' %}" method="GET">
+                        <div class="mb-3">
+                            <label for="marca" class="form-label">Seleccione una marca:</label>
+                            <select name="marca" class="form-select">
+                                <option value="" selected>Todas las marcas</option>
+                                {% for marca in marcas_disponibles %}
+                                    <option value="{{ marca }}">{{ marca }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Ordenar por precio</h5>
+                    <a href="{% url 'ordenar_productos_por_precio' %}" class="btn btn-secondary">Menor a mayor</a>
+                    <a href="{% url 'ordenar_productos_por_precio_desc' %}" class="btn btn-secondary">Mayor a menor</a>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Volver al inicio</h5>
+                    <a href="{% url 'productos' %}" class="btn btn-secondary">Restablecer</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for product in products %}
+                    {% if product.avalible %}
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    <p class="card-text">{{ product.brand }}</p>
+                                    <p class="card-text">{{ product.excerpt }}</p>
+                                    <p class="card-text">$ {{ product.price }}</p>
+                                    <a href="{% url 'product_detail' product.pk %}" class="btn btn-primary">Ver detalles</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

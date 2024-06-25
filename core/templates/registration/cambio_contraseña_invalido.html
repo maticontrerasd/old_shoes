@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+
+{% block title %}Enlace de Cambio de Contraseña Inválido{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4" style="width: 400px;">
+        <div class="card-body">
+            <h5 class="card-title">Enlace de Cambio de Contraseña Inválido</h5>
+            <p>El enlace que has usado para cambiar tu contraseña no es válido o ha expirado.</p>
+            <p>Por favor, solicita un nuevo enlace para cambiar tu contraseña.</p>
+            <a href="{% url 'emailForm' %}" class="btn btn-primary">Solicitar Nuevo Enlace</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

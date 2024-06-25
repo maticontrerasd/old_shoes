@@ -1,0 +1,24 @@
+{% extends "core/base.html" %}
+
+{% block title %}Ingresar Email{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4" style="width: 400px;">
+        <div class="card-body">
+            <h5 class="card-title">Ingresar Email</h5>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <br>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <br>
+                
+                <button type="submit" class="btn btn-primary">Enviar Correo</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

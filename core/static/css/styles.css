@@ -1,0 +1,31 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Ajusta esta altura según sea necesario */
+    object-fit: cover; /* Asegura que la imagen se recorte adecuadamente */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.card-title {
+    margin-bottom: 0.5rem; /* Ajusta el margen inferior */
+}
+
+.card-text {
+    flex: 1; /* Hace que el texto ocupe el espacio restante */
+}
+
+.card .btn {
+    align-self: flex-start; /* Alinea el botón al inicio del cuerpo de la card */
+}

@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Error en la Compra</h4>
+        <p>Lo sentimos, ha ocurrido un error al procesar tu pago. Por favor, intenta nuevamente.</p>
+        <hr>
+        <p class="mb-0">Si el problema persiste, contáctanos para obtener ayuda.</p>
+    </div>
+    <div class="mt-4">
+        <a href="{% url 'cart_detail' %}" class="btn btn-primary">Volver al Carrito</a>
+        <a href="{% url 'productos' %}" class="btn btn-secondary">Seguir Comprando</a>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}
